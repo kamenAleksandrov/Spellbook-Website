@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: sans-serif;
+    background-color: rgb(136, 95, 8);
+
+    background-image: url('max-kuznetsov-blog-banner-fixed.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+/* Book */
+
+.book {
+    /*border: 1px solid red;*/
+    position: relative;
+    width: 450px;
+    height: 700px;
+    transition: transform 0.5s;
+}
+
+.paper{
+    /*border: 1px solid yellow;*/
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    perspective: 1500px;
+    /*glowing text
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px;*/
+}
+
+.front,
+.back{
+    /*background-color: burlywood;*/
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-origin: left;
+    transition: transform 0.5s;
+    background-color: #c29a6d;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: inset 0px 0px 37px 0px rgba(0,0,0,0.7);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.front {
+    z-index: 1;
+    backface-visibility: hidden;
+    border-left: 3px solid rgb(80, 9, 9);
+}
+
+.back {
+    z-index: 0;
+}
+
+.front-content,
+.back-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.back-content {
+    /*this can be edited so the page is more like an actual book, by having the side not totaly flat*/
+    transform: rotateY(180deg);
+}
+
+/* paper flip effect */
+
+.flipped .front,
+.flipped .back{
+    /*this can be edited so the page is more like an actual book, by having the side not totaly flat*/
+    transform: rotateY(-180deg);
+}
+
+/* controler buttons */
+button{
+    width: 20px;
+    height: 200px;
+    border: none;
+    background-color: slategrey;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.5s;
+}
+
+button:focus{
+    outline: none;
+}
+
+button:hover{
+    color: aqua;
+}
+
+i{
+    font-size: 50px;
+    color: crimson;
+}
+
+/* paper stack order */
+
+#p1{
+    z-index: 3;
+}
+
+#p2{
+    z-index: 2;
+}
+
+#p3{
+    z-index: 1;
+}
+
+/* Paralax images*/
+
+  #image-track {
+    display: flex;
+    gap: 4vmin;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(0%, -50%); 
+    user-select: none; /* -- Prevent image highlighting -- */
+  }
+  
+  #image-track > .image {
+    width: 40vmin;
+    height: 56vmin;
+    object-fit: cover;
+    object-position: 100% center;
+  }
